@@ -52,6 +52,18 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(Credentials.display_user_credentials(),
                          Credentials.user_credential_list)
 
+    def test_delete_credentials(self):
+        """
+        test to see if user can delete existing credentials
+        """
+
+        self.new_user_credentials.save_existing_acc()
+        test_credential = Credentials('slack', 'lennyK', 'len1234')
+        test_credential.save_existing_acc()
+
+        self.new_user_credentials.delete_user_credentials()
+        self.assertEqual(len(Credentials.user_credential_list), 1)
+
 
 if __name__ == '__main__':
     unittest.main()
