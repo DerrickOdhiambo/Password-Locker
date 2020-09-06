@@ -9,3 +9,11 @@ class User:
         self.email = email
         self.username = username
         self.password = password
+
+    user_details = []  # empty user details list
+
+    def save_user(self):
+        """
+        a funtion for saving user credentials after creating a account
+        """
+        User.user_details.append(self)
