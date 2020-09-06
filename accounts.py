@@ -14,3 +14,10 @@ class Credentials:
         function to save existing user credentials
         """
         Credentials.user_credential_list.append(self)
+
+    @classmethod
+    def display_user_credentials(cls):
+        """
+        funtion to display existing user credentials
+        """
+        return cls.user_credential_list
