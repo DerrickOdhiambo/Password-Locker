@@ -43,6 +43,15 @@ class TestCredentials(unittest.TestCase):
         test_credentials.save_existing_acc()
         self.assertEqual(len(Credentials.user_credential_list), 2)
 
+    # 4th test
+    def test_display_credentials(self):
+        """
+        method that returns a list of all saved credentials
+        """
+
+        self.assertEqual(Credentials.display_user_credentials(),
+                         Credentials.user_credential_list)
+
 
 if __name__ == '__main__':
     unittest.main()
