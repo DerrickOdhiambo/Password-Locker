@@ -31,12 +31,35 @@ def verify_user_login(user_name, user_password):
     return account_exist
 
 
+def create_new_credentials(acc_name, acc_username, acc_password):
+    """
+    Funtion for creating new user credentials
+    """
+    new_user_credentials = Credentials(acc_name, acc_username, acc_password)
+    return new_user_credentials
+
+
 def save_new_user_credentials(credential):
     """
     funtion to save user credentials
     """
 
     credential.save_existing_acc()
+
+
+def del_user_credentials(credential):
+    """
+    funtion to delete user credentials
+    """
+
+    credential.delete_user_credentials()
+
+
+def dis_user_credentials():
+    """
+    funtion that returns all saved contacts
+    """
+    return Credentials.display_user_credentials()
 
 
 def main():
@@ -106,6 +129,9 @@ Use the following commands to procceed:
                     "Please choose a command : ").lower().strip()
                 if short_code_choice == 'ex':
                     print("Fill in the account details you want to store")
+                    # existing_acc_name = input("Account name : ")
+                    # existing_acc_username = input("Account username : ")
+                    # existing_acc_password = input("Account password : ")
 
         elif command == 'quit':
             print("Thank you for using Password Locker. See you soon!")
