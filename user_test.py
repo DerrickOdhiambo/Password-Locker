@@ -11,3 +11,19 @@ class TestUser(unittest.TestCase):
         """
         self.new_user = User(
             'Derrick', 'Odhiambo', 'odhiamboderrick56@gmail.com', 'namteroh', 'test123')
+
+    # 1st test
+    def test_init(self):
+        """
+        Test if the object has been initialized corretly
+        """
+
+        self.assertEqual(self.new_user.first_name, 'Derrick')
+        self.assertEqual(self.new_user.last_name, 'Odhiambo')
+        self.assertEqual(self.new_user.email, 'odhiamboderrick56@gmail.com')
+        self.assertEqual(self.new_user.username, 'namteroh')
+        self.assertEqual(self.new_user.password, 'test123')
+
+
+if __name__ == '__main__':
+    unittest.main()
