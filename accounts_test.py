@@ -12,6 +12,11 @@ class TestCredentials(unittest.TestCase):
 
         self.new_user_credentials = Credentials('facebook', 'lennyk', 'lk1243')
 
+    def tearDown(self):
+        """funtion that does clean up after each test case"""
+
+        Credentials.user_credential_list = []
+
     # 1st test- correct initialization
     def test_init(self):
 
@@ -26,6 +31,17 @@ class TestCredentials(unittest.TestCase):
         """
         self.new_user_credentials.save_existing_acc()
         self.assertEqual(len(Credentials.user_credential_list), 1)
+
+    # 3rd test
+    def test_save_multiple_credenials(self):
+        """
+        test to see if user can save multiple credentials
+        """
+
+        self.new_user_credentials.save_existing_acc()
+        test_credentials = Credentials('instagram', 'kravlenny', '123kravs')
+        test_credentials.save_existing_acc()
+        self.assertEqual(len(Credentials.user_credential_list), 2)
 
 
 if __name__ == '__main__':
