@@ -24,6 +24,9 @@ class TestUser(unittest.TestCase):
 
     # 2nd test if the user details are saved
     def test_save_user(self):
+        """
+        function to see if the new user credentials are being appended into the list
+        """
 
         self.new_user.save_user()
         self.assertEqual(len(User.user_credentials), 1)
