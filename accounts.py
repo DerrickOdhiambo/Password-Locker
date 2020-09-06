@@ -21,3 +21,10 @@ class Credentials:
         funtion to display existing user credentials
         """
         return cls.user_credential_list
+
+    def delete_user_credentials(self):
+        """
+        deletes a saved user credential from the list
+        """
+
+        Credentials.user_credential_list.remove(self)
