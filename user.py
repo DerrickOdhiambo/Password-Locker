@@ -2,10 +2,10 @@ class User:
     """
     User class for creating password locker account and logging in
     """
+    user_credentials = []
 
-    def __init__(self, first_name, last_name, email, username, password):
-        self.first_name = first_name
-        self.last_name = last_name
+    def __init__(self, fullname, username, password):
+        self.fullname = fullname
         self.username = username
         self.password = password
 
@@ -13,4 +13,19 @@ class User:
         """
         a funtion for saving user credentials after creating a account
         """
-        User.user_details.append(self)
+
+        User.user_credentials.append(self)
+        print(self.user_credentials)
+
+    @classmethod
+    def verify_user(cls, user_name, user_password):
+        """
+        verify is the user has created an account and exists in the list.Returns a boolean value
+        """
+        if len(cls.user_credentials) == 0:
+            return False
+        else:
+            for user in cls.user_credentials:
+                if user.username == user_name and user.password == user_password:
+                    return True
+                return False
