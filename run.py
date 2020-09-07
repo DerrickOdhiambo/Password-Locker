@@ -147,7 +147,7 @@ Use the following commands to procceed:
 
                 while True:
                     print(
-                        'Proceed to manage your account. Use the following short-codes to navigate through the application')
+                        'Proceed to manage your account. Use the following short-codes to navigate through the application :')
                     print("""
           nw - create new account credentials
           vw - view existing credentials
