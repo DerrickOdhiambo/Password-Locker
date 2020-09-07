@@ -90,7 +90,7 @@ def main():
     command = ''
     while True:
         print("""
-Welcome to password Locker!
+Welcome to Password Locker!
 Use the following commands to procceed:
   New - New user
   Log - Log into account
@@ -107,10 +107,11 @@ Use the following commands to procceed:
             confirm_password = input("Confirm password : ")
             save_user(create_account(
                 fullname, user_name, password))
-            print('*'*50)
+            print('\n')
+            print('*'*80)
             print(
                 f'Welcome {user_name}. Your account has been created succesfully!')
-            print('*'*50)
+            print('*'*80)
             print('\n')
 
             while password != confirm_password:
@@ -119,10 +120,10 @@ Use the following commands to procceed:
                 confirm_password = input('Confirm password : ')
                 print('\n')
             else:
-                print('*'*50)
+                print('*'*80)
                 print(
                     "Proceed to Login to your account. Use the command 'log' to login. \n")
-                print('*'*50)
+                print('*'*80)
 
         elif command == 'log':
             username_input = input('Username : ')
@@ -131,16 +132,18 @@ Use the following commands to procceed:
             log_in = verify_user_login(username_input, password_input)
 
             if log_in == False:
-                print('*'*50)
+                print('*'*80)
                 print(
                     "Sorry. The account doesn't exist. Please try again or create an account to access Password Locker\n")
+                print('*'*80)
+                print('\n')
 
             else:
+                print('*'*80)
                 print('Login Successful! \n')
-                print('*'*50)
                 print(
                     f'Your user name is {username_input} and password {password_input} \n')
-                print('*'*50)
+                print('*'*80)
 
                 while True:
                     print(
@@ -180,43 +183,43 @@ Use the following commands to procceed:
 
                         save_new_user_credentials(create_new_credentials(
                             account_name, account_username, user_choice_pass))
-                        print('*'*50)
+                        print('*'*80)
                         print(
-                            f'User credential : Page-name : {account_name} Username : {account_username} Password : {user_choice_pass} created.')
-                        print('*'*50)
+                            f'User Account :\n Page-name : {account_name}\n Username : {account_username}\n Password : {user_choice_pass}')
+                        print('*'*80)
                         print("\n")
 
                     elif short_code_choice == 'vw':
                         if dis_user_credentials():
                             print('Here is a list of your current credentials : ')
-                            print('*'*50)
+                            print('*'*80)
                             for credential in dis_user_credentials():
                                 print(
                                     f'Account name : {credential.acc_name}\nUsername : {account_username}\nPassword : {user_choice_pass}')
-                                print('*'*50)
+                                print('*'*80)
                                 print("\n")
                         else:
-                            print('*'*50)
+                            print('*'*80)
                             print(
                                 "Sorry. You don't seem to have any acounts yet. Would you like to create an account?")
-                            print('*'*50)
+                            print('*'*80)
                             print("\n")
 
                     elif short_code_choice == 'sr':
                         print('Enter the username you want to search for : ')
                         search_term = input('> ')
                         print('\n')
-                        print('*'*50)
+                        print('*'*80)
                         if check_existing_accounts(search_term):
                             search_account = find_account(search_term)
                             print(
-                                f'The account was found!\nAccount name : {search_account.acc_name}\nAccount username : {search_account.acc_username}\nPassword : {search_account.acc_password}')
-                            print('*'*50)
+                                f'The account was found :\nAccount name : {search_account.acc_name}\nAccount username : {search_account.acc_username}\nPassword : {search_account.acc_password}')
+                            print('*'*80)
 
                         else:
-                            print('*'*50)
+                            print('*'*80)
                             print('The account you are looking for does not exist.')
-                            print('*'*50)
+                            print('*'*80)
                             print('\n')
 
                     elif short_code_choice == 'dl':
@@ -226,25 +229,34 @@ Use the following commands to procceed:
                             account_search = find_account(search_input)
                             print("\n")
                             account_search.delete_user_credentials()
-                            print('\n')
-                            print(f"Your account was successfully deleted")
-                            print('*'*50)
+                            print(f"Your account was successfully deleted!")
+                            print('*'*80)
                         else:
+                            print('*'*80)
                             print(
                                 "Sorry. The account you are looking for does not exist\n")
+                            print('*'*80)
+                            print('\n')
 
                     elif short_code_choice == 'ex':
-                        print("Thank you!")
+                        print("Thank you!\n")
                         break
 
                     else:
                         print('Sorry. I didnt catch that. Try again..\n')
 
         elif command == 'quit':
+            print('*'*80)
             print("Thank you for using Password Locker. See you soon!")
+            print('*'*80)
+            print('\n')
             break
         else:
-            print("Sorry I didn't understand that command. Please enter a valid command.")
+            print('*'*80)
+            print(
+                "Sorry I didn't understand that command. Please enter a valid command.")
+            print('*'*80)
+            print('\n')
 
 
 if __name__ == '__main__':
