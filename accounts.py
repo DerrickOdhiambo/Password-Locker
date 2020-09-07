@@ -1,3 +1,7 @@
+from random import *
+import string
+
+
 class Credentials:
     """
     a class for user accounts and account details
@@ -21,6 +25,16 @@ class Credentials:
         funtion to display existing user credentials
         """
         return cls.user_credential_list
+
+    @classmethod
+    def generate_password(cls):
+        '''
+        Method that generates a random password
+        '''
+        charcaters = string.ascii_uppercase+string.ascii_lowercase+string.digits
+        password = ''.join(choice(charcaters) for x in range(randint(8, 16)))
+
+        return password
 
     def delete_user_credentials(self):
         """
