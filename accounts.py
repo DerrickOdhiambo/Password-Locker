@@ -36,6 +36,15 @@ class Credentials:
 
         return password
 
+    @classmethod
+    def find_by_username(cls, username):
+        """
+        Method that takes in a username and returns an account that matches that ussername
+        """
+        for name in cls.user_credential_list:
+            if name.acc_username == username:
+                return name
+
     def delete_user_credentials(self):
         """
         deletes a saved user credential from the list
