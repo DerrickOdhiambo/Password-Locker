@@ -53,8 +53,8 @@ def del_user_credentials(credential):
     """
     funtion to delete user credentials
     """
-
-    credential.delete_user_credentials()
+    print('wos')
+    return credential.delete_user_credentials()
 
 
 def dis_user_credentials():
@@ -225,8 +225,7 @@ Use the following commands to procceed:
                         if find_account(search_input):
                             account_search = find_account(search_input)
                             print("\n")
-                            print(account_search)
-                            account_search.del_user_credentials()
+                            account_search.delete_user_credentials()
                             print('\n')
                             print(f"Your account was successfully deleted")
                             print('*'*50)
