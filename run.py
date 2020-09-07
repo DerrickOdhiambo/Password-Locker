@@ -195,7 +195,7 @@ Use the following commands to procceed:
                             print('*'*80)
                             for credential in dis_user_credentials():
                                 print(
-                                    f'Account name : {credential.acc_name}\nUsername : {account_username}\nPassword : {user_choice_pass}')
+                                    f'Account name : {credential.acc_name}\nUsername : {credential.acc_username}\nPassword : {credential.acc_password}')
                                 print('*'*80)
                                 print("\n")
                         else:
