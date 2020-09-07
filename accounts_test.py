@@ -52,6 +52,18 @@ class TestCredentials(unittest.TestCase):
         self.assertEqual(Credentials.display_user_credentials(),
                          Credentials.user_credential_list)
 
+    def test_find_credentials(self):
+        """
+        Test to see if a user can search for a specific account in the application
+        """
+
+        self.new_user_credentials.save_existing_acc()
+        test_account = Credentials('Facebook', 'derricko', 'fb456')
+        test_account.save_existing_acc()
+
+        found_account = Credentials.find_by_username('derricko')
+        self.assertEqual(found_account.acc_name, test_account.acc_name)
+
     def test_delete_credentials(self):
         """
         test to see if user can delete existing credentials
