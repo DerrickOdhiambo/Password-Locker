@@ -108,7 +108,7 @@ Use the following commands to procceed:
 
             if log_in == False:
                 print(
-                    "Sorry. The account does not exist. Please create an account to access Password Locker\n")
+                    "Sorry. The account does not exist. Please try again or create an account to access Password Locker\n")
 
             else:
                 print("Login Successful! \n")
@@ -116,22 +116,31 @@ Use the following commands to procceed:
                 print(
                     f"Your user name is {username_input} and password {password_input} \n")
                 print("*"*50)
-                print(
-                    "Proceed to manage your account. Use the following short-codes to navigate through the application")
-                print("""
-                ex - storing existing account credentials
-                nw - create new account credentials
-                vw - view existing credentials
-                dl - delete account credentials 
-                \n
-                """)
-                short_code_choice = input(
-                    "Please choose a command : ").lower().strip()
-                if short_code_choice == 'ex':
-                    print("Fill in the account details you want to store")
-                    # existing_acc_name = input("Account name : ")
-                    # existing_acc_username = input("Account username : ")
-                    # existing_acc_password = input("Account password : ")
+
+                while True:
+                    print(
+                        "Proceed to manage your account. Use the following short-codes to navigate through the application")
+                    print("""
+          ex - storing existing account credentials
+          nw - create new account credentials
+          vw - view existing credentials
+          dl - delete account credentials 
+          \n
+                      """)
+                    short_code_choice = input(
+                        "Please choose a command : ").lower().strip()
+                    if short_code_choice == 'ex':
+                        print("Fill in the account details you want to store")
+                        account_name = input("Account name : ")
+                        account_username = input("Account username : ")
+                        account_password = input("Account password : ")
+
+                        save_new_user_credentials(create_new_credentials(
+                            account_name, account_username, account_password))
+                        print('*'*50)
+                        print(
+                            f"User credential : {account_name} and {account_username} created.")
+                        print('*'*50)
 
         elif command == 'quit':
             print("Thank you for using Password Locker. See you soon!")
