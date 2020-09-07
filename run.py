@@ -2,6 +2,8 @@
 
 from user import User
 from accounts import Credentials
+import random
+import string
 
 
 def create_account(fullname, username, password):
@@ -26,8 +28,8 @@ def verify_user_login(user_name, user_password):
     """
 
     account_exist = User.verify_user(user_name, user_password)
-    print("verify_user_login")
-    print(account_exist)
+    # print("verify_user_login")
+    # print(account_exist)
     return account_exist
 
 
@@ -59,7 +61,15 @@ def dis_user_credentials():
     """
     funtion that returns all saved contacts
     """
+
     return Credentials.display_user_credentials()
+
+
+def generate_password():
+    """Funtion that generates random password for the user"""
+
+    gen_password = Credentials.generate_password()
+    return gen_password
 
 
 def main():
@@ -72,7 +82,7 @@ Use the following commands to procceed:
   Log - Log into account
   Quit - Terminate process
       """)
-        command = input("Please choose a command : ").lower()
+        command = input("Please choose a command : ").lower().strip()
 
         if command == 'new':
             print('\n')
@@ -123,23 +133,65 @@ Use the following commands to procceed:
                     print("""
           nw - create new account credentials
           vw - view existing credentials
-          dl - delete account credentials 
+          dl - delete account credentials
+          ex - exit
           \n
                       """)
                     short_code_choice = input(
                         "Please choose a command : ").lower().strip()
-                    if short_code_choice == 'ex':
+                    if short_code_choice == 'nw':
                         print("Fill in the account details you want to store")
                         account_name = input("Account name : ")
                         account_username = input("Account username : ")
-                        account_password = input("Account password : ")
+
+                        while True:
+                            print("""
+        Would you like to use your own password or a random generated password?
+        Use short-codes:
+            my - your password choice
+            gp - to generate password
+        """)
+                            user_choice = input("> ").lower().strip()
+                            if user_choice == 'my':
+                                user_choice_pass = input("Your password :")
+                                break
+                            elif user_choice == 'gp':
+                                user_choice_pass = generate_password()
+                                break
+                            else:
+                                print(
+                                    "Sorry. I didn't catch that. Try again please...")
 
                         save_new_user_credentials(create_new_credentials(
-                            account_name, account_username, account_password))
+                            account_name, account_username, user_choice_pass))
                         print('*'*50)
                         print(
-                            f"User credential : {account_name} and {account_username} created.")
+                            f"User credential : Page-name : {account_name} Username : {account_username} Password : {user_choice_pass} created.")
                         print('*'*50)
+                        print("\n")
+
+                    elif short_code_choice == 'vw':
+                        if dis_user_credentials():
+                            print("Here is a list of your current credentials : ")
+                            print('*'*50)
+                            for credential in dis_user_credentials():
+                                print(
+                                    f"Account name : {credential.acc_name}\nUsername : {account_username}\nPassword : {user_choice_pass}")
+                                print('*'*50)
+                                print("\n")
+                        else:
+                            print('*'*50)
+                            print(
+                                "Sorry. You don't seem to have any acounts yet. Would you like to create an account?")
+                            print('*'*50)
+                            print("\n")
+
+                    elif short_code_choice == 'dl':
+                        print("What would you like to delete?")
+
+                    else:
+                        print("Thank you!")
+                        break
 
         elif command == 'quit':
             print("Thank you for using Password Locker. See you soon!")
