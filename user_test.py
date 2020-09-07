@@ -12,7 +12,13 @@ class TestUser(unittest.TestCase):
         self.new_user = User(
             'Derrick Odhiambo', 'namteroh', 'test123')
 
+    def tearDown(self):
+        """funtion that does clean up after each test case"""
+
+        User.user_credentials = []
+
     # 1st test
+
     def test_init(self):
         """
         Test if the object has been initialized corretly
@@ -30,6 +36,16 @@ class TestUser(unittest.TestCase):
 
         self.new_user.save_user()
         self.assertEqual(len(User.user_credentials), 1)
+
+    def test_credential_exist(self):
+        """
+        test to check if we can return a true or false based on whether we find or can't find the credential.
+        """
+        self.new_user.save_user()
+        new_user_data = User("Derrick Odhiambo", "namteroh", "Mfh45hfk")
+        new_user_data.save_user()
+        user_data = User.verify_user('namteroh', "Mfh45hfk")
+        self.assertFalse(user_data)
 
 
 if __name__ == '__main__':
