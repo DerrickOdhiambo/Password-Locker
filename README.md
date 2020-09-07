@@ -11,7 +11,7 @@
 
 ## Installation
 
-### Requirments
+### Requirements
 
 - Python3.6 or an updated version
 
