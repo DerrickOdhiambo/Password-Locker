@@ -189,9 +189,12 @@ Use the following commands to procceed:
                     elif short_code_choice == 'dl':
                         print("What would you like to delete?")
 
-                    else:
+                    elif short_code_choice == 'ex':
                         print("Thank you!")
                         break
+
+                    else:
+                        print('Sorry. I didnt catch that. Try again..')
 
         elif command == 'quit':
             print("Thank you for using Password Locker. See you soon!")
