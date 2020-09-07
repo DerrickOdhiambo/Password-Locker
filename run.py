@@ -72,6 +72,13 @@ def generate_password():
     return gen_password
 
 
+def find_account(username):
+    """
+    a method funtion for the user to search for a specific account using its username.
+    """
+    return Credentials.find_by_username(username)
+
+
 def main():
     command = ''
     while True:
