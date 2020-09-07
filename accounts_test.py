@@ -64,6 +64,17 @@ class TestCredentials(unittest.TestCase):
         found_account = Credentials.find_by_username('derricko')
         self.assertEqual(found_account.acc_name, test_account.acc_name)
 
+    def test_account_exists(self):
+        """
+        Test to check if a certain account exists and returns a boolean value
+        """
+        self.new_user_credentials.save_existing_acc()
+        test_account = Credentials('Facebook', 'derricko', 'fb456')
+        test_account.save_existing_acc()
+
+        account_exists = Credentials.account_exists('derricko')
+        self.assertTrue(account_exists)
+
     def test_delete_credentials(self):
         """
         test to see if user can delete existing credentials

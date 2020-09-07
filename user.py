@@ -15,7 +15,6 @@ class User:
         """
 
         User.user_credentials.append(self)
-        print(self.user_credentials)
 
     @classmethod
     def verify_user(cls, user_name, user_password):
