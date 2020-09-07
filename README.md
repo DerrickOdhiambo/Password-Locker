@@ -1,6 +1,6 @@
 # Password Locker
 
-- An terminal based aplication for managing user accounts, cstoring and creating passwords for the accounts.
+- A terminal based aplication for managing user accounts, cstoring and creating passwords for the accounts.
 
 ## User Stories
 
@@ -34,9 +34,9 @@
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Open terminal                                                                                 | Run command `\$ ./run.py`                                                                                                  | Welcome to password Locker<br>Use the following commands to proceed<br>                                                         |
 | New - new user<br>Log - Log into account <br>Quit - Terminate process                         |
-| Select New                                                                                    | Input fullname, username , password and confirm password                                                                   | Welcome `username`.Your account has been created successfully<br>Proceed to log in using command 'log'                          |
-| Select log                                                                                    | Input `username` and `password`                                                                                            | Succesful login - Your usename is `name` and password `password`<br>Unsuccessful login - Sorry                                  | Account does not exist. Please try again or create an account |
-| Succesful login - Procceed to manage your accounts. Use the following short codes to navigate |                                                                                                                            |
+| Select `new`                                                                                  | Input fullname, username , password and confirm password                                                                   | Welcome `username`.Your account has been created successfully<br>Proceed to log in using command 'log'                          |
+| Select `log`                                                                                  | Input `username` and `password`                                                                                            | Succesful login - Your usename is `name` and password `password`<br>Unsuccessful login - Sorry                                  | Account does not exist. Please try again or create an account |
+| Succesful login - Procceed to manage your accounts. Use the following short codes to navigate |
 | Select nw                                                                                     | Input account name, account username<br>Would you like your own password or a random generated password?<br>input my or pg | User credential :Page-name:`name` Username: `username` Password:`password` created.                                             |
 | Select vw                                                                                     | Input `vw`                                                                                                                 | Displays the accounts exists or a message 'Sorry. You don't seem to have any acounts yet. Would you like to create an account?' |
 | Select dl                                                                                     | Input `dl`                                                                                                                 | Which account would you like to delete?                                                                                         |
