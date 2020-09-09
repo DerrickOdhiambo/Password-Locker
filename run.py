@@ -4,6 +4,8 @@ from user import User
 from accounts import Credentials
 import random
 import string
+import pickle
+import time
 
 
 def create_account(fullname, username, password):
@@ -88,50 +90,63 @@ def check_existing_accounts(username):
 
 def main():
     command = ''
+    print('*'*80)
+    print('Welcome to Password Locker!\n')
+    print('*'*80)
     while True:
+        time.sleep(1)
         print("""
-Welcome to Password Locker!
-Use the following commands to procceed:
-  New - New user
-  Log - Log into account
-  Quit - Terminate process
+        Use the following commands to procceed:
+        New - New user
+        Log - Log into account
+        Quit - Terminate process
       """)
         command = input(
             'Please choose a command to continue : ').lower().strip()
+        print('\nProcessing...')
+        time.sleep(1.5)
 
         if command == 'new':
             print('\n')
+            print('*'*80)
             fullname = input('Enter full name : ')
             user_name = input('Enter username : ')
             password = input('Enter password : ')
             confirm_password = input("Confirm password : ")
-            save_user(create_account(
-                fullname, user_name, password))
-            print('\n')
-            print('*'*80)
-            print(
-                f'Welcome {user_name}. Your account has been created succesfully!')
-            print('*'*80)
+            print('\nCreating Account...')
+            time.sleep(0.5)
             print('\n')
 
             while password != confirm_password:
-                print("Sorry. Password didn't not match. Please \n")
-                password = input('Enter password : ')
+                print('Checking password...\n')
+                time.sleep(1)
+                print("Sorry. Password didn't not match. Please try again... \n")
                 confirm_password = input('Confirm password : ')
                 print('\n')
             else:
+                print('\nCreating account...\n')
+                time.sleep(1)
+                print('*'*80)
+                print(
+                    f'Welcome {user_name}. Your account has been created succesfully!')
                 print('*'*80)
                 print(
                     "Proceed to Login to your account. Use the command 'log' to login. \n")
                 print('*'*80)
+            save_user(create_account(
+                fullname, user_name, password))
 
         elif command == 'log':
+            time.sleep(0.5)
             username_input = input('Username : ')
             password_input = input('Password : ')
-            print('\n')
+            print('\nLogging in...\n')
+            time.sleep(1)
             log_in = verify_user_login(username_input, password_input)
 
             if log_in == False:
+                print('Checking account...\n')
+                time.sleep(1)
                 print('*'*80)
                 print(
                     "Sorry. The account doesn't exist. Please try again or create an account to access Password Locker\n")
@@ -139,13 +154,16 @@ Use the following commands to procceed:
                 print('\n')
 
             else:
+                time.sleep(0.5)
                 print('*'*80)
                 print('Login Successful! \n')
+                time.sleep(0.5)
                 print(
                     f'Your user name is {username_input} and password {password_input} \n')
                 print('*'*80)
 
                 while True:
+                    time.sleep(1)
                     print(
                         'Proceed to manage your account. Use the following short-codes to navigate through the application :')
                     print("""
@@ -156,12 +174,14 @@ Use the following commands to procceed:
           ex - exit
           \n
                       """)
+                    time.sleep(0.5)
                     short_code_choice = input(
                         'Please choose a command : ').lower().strip()
                     if short_code_choice == 'nw':
                         print('Fill in the account details you want to store..')
                         account_name = input('Account name : ')
                         account_username = input('Account username : ')
+                        print('\nProcessing...\n')
 
                         while True:
                             print("""
@@ -178,11 +198,14 @@ Use the following commands to procceed:
                                 user_choice_pass = generate_password()
                                 break
                             else:
+                                print('\nProcessing...\n')
+                                time.sleep(1)
                                 print(
                                     "Sorry. I didn't catch that. Try again please...")
 
                         save_new_user_credentials(create_new_credentials(
                             account_name, account_username, user_choice_pass))
+                        time.sleep(1)
                         print('*'*80)
                         print(
                             f'User Account :\n Page-name : {account_name}\n Username : {account_username}\n Password : {user_choice_pass}')
@@ -192,6 +215,7 @@ Use the following commands to procceed:
                     elif short_code_choice == 'vw':
                         if dis_user_credentials():
                             print('Here is a list of your current credentials : ')
+                            time.sleep(1)
                             print('*'*80)
                             for credential in dis_user_credentials():
                                 print(
@@ -199,6 +223,8 @@ Use the following commands to procceed:
                                 print('*'*80)
                                 print("\n")
                         else:
+                            print('\nProcessing...\n')
+                            time.sleep(1)
                             print('*'*80)
                             print(
                                 "Sorry. You don't seem to have any acounts yet. Would you like to create an account?")
@@ -207,16 +233,21 @@ Use the following commands to procceed:
 
                     elif short_code_choice == 'sr':
                         print('Enter the username you want to search for : ')
+                        time.sleep(0.5)
                         search_term = input('> ')
                         print('\n')
                         print('*'*80)
                         if check_existing_accounts(search_term):
                             search_account = find_account(search_term)
+                            print('\nLoading accounts...\n')
+                            time.sleep(1)
                             print(
                                 f'The account was found :\nAccount name : {search_account.acc_name}\nAccount username : {search_account.acc_username}\nPassword : {search_account.acc_password}')
                             print('*'*80)
 
                         else:
+                            print('\nProcessing...\n')
+                            time.sleep(1)
                             print('*'*80)
                             print('The account you are looking for does not exist.')
                             print('*'*80)
@@ -229,9 +260,13 @@ Use the following commands to procceed:
                             account_search = find_account(search_input)
                             print("\n")
                             account_search.delete_user_credentials()
+                            print('\nDeleting...\n')
+                            time.sleep(1)
                             print(f"Your account was successfully deleted!")
                             print('*'*80)
                         else:
+                            print('\nProcessing...\n')
+                            time.sleep(1.5)
                             print('*'*80)
                             print(
                                 "Sorry. The account you are looking for does not exist\n")
@@ -239,13 +274,18 @@ Use the following commands to procceed:
                             print('\n')
 
                     elif short_code_choice == 'ex':
+                        print('\nExiting...\n')
+                        time.sleep(1)
                         print("Thank you!\n")
                         break
 
                     else:
+                        print('\nProcessing...\n')
+                        time.sleep(1)
                         print('Sorry. I didnt catch that. Try again..\n')
 
         elif command == 'quit':
+            time.sleep(0.5)
             print('*'*80)
             print("Thank you for using Password Locker. See you soon!")
             print('*'*80)
